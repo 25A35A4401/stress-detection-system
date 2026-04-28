@@ -1,2 +1,1 @@
-📊 Stress Detection System
 The Stress Detection System is a web-based application that analyzes a user's daily lifestyle habits and predicts their stress level. It classifies stress into Low, Medium, or High and provides useful suggestions to improve mental well-being.
