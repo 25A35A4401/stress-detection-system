@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Stress Detection System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #74ebd5, #9face6);
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            padding: 40px 0;
+        }
+
+        .container {
+            background: #ffffff;
+            padding: 30px;
+            width: 380px;
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        
+        h2 {
+            position: sticky;
+            top: 0;
+            background: white;
+            padding: 10px;
+        }
+
+        label {
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin: 6px 0 12px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #45a049;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            background: #f2f2f2;
+        }
+
+        .low { color: green; }
+        .medium { color: orange; }
+        .high { color: red; }
+
+        .tip {
+            margin-top: 10px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Stress Detection System</h2>
+      <p style="text-align:center; font-size:14px; color:#666;">
+        Enter your daily routine details to analyze your stress level.
+        </p>
+    <form method="post">
+        <label>Average sleep per night (hours)</label>
+        <input type="number" name="sleep" required>
+
+        <label>Daily work / study load (hours)</label>
+        <input type="number" name="work" required>
+
+        <label>Non-work screen time (hours)</label>
+        <input type="number" name="screen" required>
+
+        <label>Work / academic pressure (1–5)</label>
+        <input type="number" name="pressure" min="1" max="5" required>
+
+        <label>Emotional well-being (1–5)</label>
+        <input type="number" name="mood" min="1" max="5" required>
+         
+
+        <button type="submit">Check Stress Level</button>
+    </form>
+
+    {% if result %}
+    <div class="result">
+        <h3 class="{{ result|lower }}">Stress Level: {{ result }}</h3>
+        <p class="tip"><b>Tip:</b> {{ tip }}</p>
+        <p style="margin-top:8px; font-size:14px; color:#444;">
+        <b>Reason:</b> {{ reason }}
+        </p>
+
+        <p style="margin-top:8px;"><b>Personalized Suggestions:</b></p>
+        <ul style="font-size:14px; color:#333;">
+            {% for s in suggestions %}
+                 <li>{{ s }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+</div>
+
+</body>
+</html>
